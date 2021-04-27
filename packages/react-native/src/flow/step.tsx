@@ -1,6 +1,5 @@
 import React, { FC, ReactElement, isValidElement, cloneElement } from 'react';
 import { useTheme } from '@shopify/restyle';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { Theme } from '../config/theme';
 import { px, ONE_PIXEL } from '../helper';
@@ -8,6 +7,7 @@ import Icon from '../icon';
 import Flex from '../flex';
 import Text from '../text';
 import Box from '../box';
+import { View } from 'react-native';
 
 export interface StepProps {
   /** 标题 */
@@ -67,10 +67,6 @@ const Step: FC<StepProps> = ({
   };
   /** 活动状态的颜色 */
   const iconActiveColor = iconColor[status];
-  const linearColor =
-    status === 'error'
-      ? [theme.colors.fail, theme.colors.fail]
-      : [theme.colors.flow_linear_start, theme.colors.flow_linear_end];
   /**
    * icon的render
    * 1 判断有没有自定义组件，使用自定义组件
@@ -134,7 +130,7 @@ const Step: FC<StepProps> = ({
           {stepRender ? (
             iconRender()
           ) : (
-            <LinearGradient
+            <View
               style={{
                 width: size,
                 height: size,
@@ -143,13 +139,11 @@ const Step: FC<StepProps> = ({
                 alignItems: 'center',
                 overflow: 'hidden',
                 opacity: active ? 1 : 0.3,
+                backgroundColor: status === 'error' ? theme.colors.flow_error : theme.colors.flow_default,
               }}
-              colors={linearColor}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
             >
               {iconRender()}
-            </LinearGradient>
+            </View>
           )}
         </Box>
         {tailRender()}

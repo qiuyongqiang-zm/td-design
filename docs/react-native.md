@@ -61,13 +61,11 @@ npx react-native init ProjectName --template react-native-template-typescript
 
 **5. [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler)v1.10.3 版本**
 
-**6. [react-native-linear-gradient](https://github.com/react-native-linear-gradient/react-native-linear-gradient)**
+**6. [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)v1.13.1 版本**
 
-**7. [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)v1.13.1 版本**
+**7. [react-native-redash](https://github.com/wcandillon/react-native-redash)v14.2.4 版本**
 
-**8. [react-native-redash](https://github.com/wcandillon/react-native-redash)v14.2.4 版本**
-
-**9. [react-native-svg](https://github.com/react-native-svg/react-native-svg)**
+**8. [react-native-svg](https://github.com/react-native-svg/react-native-svg)**
 
 #### 2.2. 安装组件库
 
