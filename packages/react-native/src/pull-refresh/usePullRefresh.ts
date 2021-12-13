@@ -26,6 +26,7 @@ export default function usePullRefresh({
   'onRefresh' | 'springConfig' | 'onScrollY' | 'children' | 'refreshing' | 'headerHeight'
 >) {
   const [gestureEnabled, setGestureEnabled] = useSafeState(!refreshing);
+  const [scrollHeight, setScrollHeight] = useSafeState(0);
 
   const header = useRef<PullRefreshHeaderRef>(null);
   const scroll = useRef<NativeViewGestureHandler>();
@@ -35,6 +36,7 @@ export default function usePullRefresh({
 
   /** 滚动过程中禁用PanGestureHandler */
   const handleScrolling = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setScrollHeight(event.nativeEvent.contentOffset.y)
     onScrollY?.(event.nativeEvent.contentOffset.y);
     setGestureEnabled(false);
   };
@@ -85,7 +87,7 @@ export default function usePullRefresh({
 
   const panHandler = useAnimatedGestureHandler({
     onActive(event) {
-      if (!gestureEnabled) return;
+      if (!gestureEnabled || scrollHeight > 0) return;
 
       if (event.translationY > 0) {
         translateY.value = event.translationY;
