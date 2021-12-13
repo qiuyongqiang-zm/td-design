@@ -90,8 +90,9 @@ export default function usePullRefresh({
       if (!gestureEnabled || scrollHeight > 0) return;
 
       if (event.translationY > 0) {
-        translateY.value = event.translationY;
-        runOnJS(setProgress)(event.translationY);
+        let translationY = event.translationY / 2;
+        translateY.value = translationY;
+        runOnJS(setProgress)(translationY);
       } else {
         translateY.value = withTiming(0);
       }
